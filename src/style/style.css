@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(78, 78, 228);
+}
+
+
+header {
+    background: url("../img/heading.png") padding-box no-repeat center;
+    background-size: 27em 8em;
+    padding: 4em;
+}
+
+.board-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15em;
+
+    margin-top: 1em;
+
+}
+
+.board {
+    height: 35em;
+    width: 30em;
+
+    padding: 2em;
+    text-align: center;
+}
+
+.board h2 {
+    font-size: 2.5em;
+    color: white;
+}

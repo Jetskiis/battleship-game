@@ -1,0 +1,5 @@
+const createGameBoard = () => {
+    receieveAttack(){
+        
+    }
+}
