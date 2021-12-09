@@ -1,5 +1,8 @@
 const createGameBoard = () => {
-    receieveAttack(){
+    const receieveAttack = (coords) => {
         
     }
 }
+
+
+module.exports = createGameBoard
