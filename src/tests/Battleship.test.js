@@ -1,4 +1,4 @@
-const battleShip = require("../modules/factories/Battleship");
+import battleShip from "../modules/factories/Battleship.js";
 
 describe("Testing arguments (length) for battleship", () => {
   test("return 2 and 3 for length", () => {
@@ -37,7 +37,7 @@ describe("Testing ship methods", () => {
     expect(testShip1.hit([3,2])).toBe(true);
   });
   test("ship1 should not be hit",()=>{
-    expect(testShip1.hit([5,2])).toBe(false);
+    expect(testShip1.hit(3)).toBe(false);
   });
   test("end of ship1 should be hit",()=>{
     expect(testShip1.hit([4,2])).toBe(true);

@@ -1,6 +1,16 @@
-const player = () => {
+const player = (name) => {
     
+    attack = () => {
+
+    }
+    
+
+
+
+    return {
+
+    }
 }
 
 
-module.exports = player
+export default player;

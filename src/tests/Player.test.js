@@ -1,2 +1,2 @@
-const player = require("../modules/factories/Player")
+import plr from "../modules/factories/Player.js"
 
