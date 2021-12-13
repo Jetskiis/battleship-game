@@ -1,11 +1,11 @@
 const { node } = require("webpack");
+import { isEqual } from "lodash";
 import battleship from "./Battleship.js";
-import {isEqual} from "lodash"
 
 const createGameBoard = () => {
   //board is 100 squares. goes from [1,10] both directions so shifted up by 1 from normal arrays. 2d array with [row][column]
   let board = create2D();
-  //positions of all placed ships
+  //positions of placed ships
   let shipsDatabase = [];
   const allShips = {
     carrier: 5,
@@ -15,6 +15,7 @@ const createGameBoard = () => {
     destroyer: 2,
   };
   let missedShots = [];
+  let hitShots = [];
 
   //start takes array with 2 values: x,y
   //axis: x start from left to right, y start from down to up
@@ -58,34 +59,57 @@ const createGameBoard = () => {
     }
   };
 
+  //try to attack a position and see if its already been hit
+  const tryAttack = (coords) => {
+    //attack on coord missed previously
+    for (const missed of missedShots) {
+      if (isEqual(missed, coords)) {
+        return false;
+      }
+    }
+    //attack on coord already hit previously
+    for (const hit of hitShots) {
+      if (isEqual(hit, coords)) {
+        return false;
+      }
+    }
+    return true
+  };
+
+  //execute attack
   const receiveAttack = (coords) => {
-    //attack missed previously
-    for (const missed of missedShots){
-      if (isEqual(missed,coords)){
-        return false
+    if (tryAttack(coords)) {
+      for (const ship of shipsDatabase) {
+        if (ship.hit(coords)) {
+          hitShots.push(coords);
+          return true;
+        }
       }
+      missedShots.push(coords);
+      //shot missed
+      return false;
     }
-    for (const ship of shipsDatabase) {
-      if (ship.hit(coords)) {
-        return true;
-      }
-    }
-    missedShots.push(coords);
-    return false;
+    else return false
   };
 
   const getMissedAttacks = () => {
     return missedShots;
   };
+  const getHitAttacks = () => {
+    return hitShots;
+  };
+  const typeShipsSunk = () => {};
   const allShipsSunk = () => {
-    return shipsDatabase.every((ship)=>ship.beenSunk());
+    return shipsDatabase.every((ship) => ship.beenSunk());
   };
 
   return {
     place,
+    tryAttack,
     receiveAttack,
     getMissedAttacks,
-    allShipsSunk
+    getHitAttacks,
+    allShipsSunk,
   };
 };
 

@@ -56,17 +56,23 @@ describe("Testing attacking on the board", () => {
 }); 
 });
 
-describe("Testing missed attacks and if all ships are sunk",()=>{
+describe("Testing hit and  missed attacks and if all ships are sunk",()=>{
   test("Display missed attacks",()=>{
-    expect(board.getMissedAttacks()).toHaveLength(5);
+    expect(board.getMissedAttacks()).toHaveLength(3);
     expect(board.getMissedAttacks()).toContainEqual([4,1]);
     expect(board.getMissedAttacks()).toContainEqual([5,1]);
     expect(board.getMissedAttacks()).toContainEqual([8,8]);
   })
-  test("All ships should not  be sunk yet",()=>{
+  test("Display hit attacks",()=>{
+    expect(board.getHitAttacks()).toHaveLength(4);
+    expect(board.getHitAttacks()).toContainEqual([1,1]);
+    expect(board.getHitAttacks()).toContainEqual([3,1]);
+    expect(board.getHitAttacks()).toContainEqual([10,7]);
+    expect(board.getHitAttacks()).toContainEqual([10,8]);
+  })
+  test("All ships should not be sunk yet",()=>{
     expect(board.allShipsSunk()).toBe(false);
   });
-
   test("All ships should be sunk",()=>{
     board.receiveAttack([2,1]);
     board.receiveAttack([10,6]);
