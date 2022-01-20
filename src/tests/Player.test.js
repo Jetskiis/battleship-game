@@ -1,8 +1,8 @@
-import gameBoard from "../modules/factories/Gameboard.js";
+import {createGameBoard} from "../modules/factories/gameBoard.js";
 import { AI, player } from "../modules/factories/Player.js";
 
-let playerBoard = gameBoard();
-let AIBoard = gameBoard();
+let playerBoard = createGameBoard();
+let AIBoard = createGameBoard();
 let plr1 = player("Joseph");
 let plr2 = AI();
 

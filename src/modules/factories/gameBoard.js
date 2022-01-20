@@ -1,4 +1,3 @@
-const { node } = require("webpack");
 import { isEqual } from "lodash";
 import battleship from "./Battleship.js";
 
@@ -20,12 +19,12 @@ const createGameBoard = () => {
   //start takes array with 2 values: x,y
   //axis: x start from left to right, y start from down to up
   const place = (start, axis, type) => {
-    let [x, y] = start;
+    let [x = null, y = null] = start;
     let shipCoord = [];
     const length = allShips[type];
 
     if (axis === "x") {
-      if (start[0] + length <= 10) {
+      if (x + length - 1 <= 10) {
         for (let i = 0; i < length; i++) {
           if (board[x + i - 1][y - 1] != "-") {
             //ship already placed at location
@@ -41,7 +40,7 @@ const createGameBoard = () => {
         return false;
       }
     } else if (axis === "y") {
-      if (start[1] + length <= 10) {
+      if (y + length - 1 <= 10) {
         for (let i = 0; i < length; i++) {
           if (board[x - 1][y + i - 1] != "-") {
             //ship already placed at location
@@ -76,7 +75,7 @@ const createGameBoard = () => {
     return true
   };
 
-  //execute attack
+  //execute attack, might need to change return values
   const receiveAttack = (coords) => {
     if (tryAttack(coords)) {
       for (const ship of shipsDatabase) {
@@ -98,12 +97,14 @@ const createGameBoard = () => {
   const getHitAttacks = () => {
     return hitShots;
   };
-  const typeShipsSunk = () => {};
+  //const typeShipsSunk = () => {};
+  
   const allShipsSunk = () => {
     return shipsDatabase.every((ship) => ship.beenSunk());
   };
 
   return {
+    allShips,
     place,
     tryAttack,
     receiveAttack,
@@ -113,6 +114,8 @@ const createGameBoard = () => {
   };
 };
 
+
+//creates 10x10 2D array
 function create2D() {
   let arr = Array(10);
   for (let i = 0; i < arr.length; i++) {
@@ -121,4 +124,4 @@ function create2D() {
   return arr;
 }
 
-export default createGameBoard;
+export {createGameBoard};

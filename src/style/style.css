@@ -4,7 +4,9 @@
     box-sizing: border-box;
 }
 
-body {
+html,body {
+    min-height: 100vh;
+    height: 100%;
     background: rgb(78, 78, 228);
 }
 
@@ -15,6 +17,11 @@ header {
     padding: 4em;
 }
 
+main {
+    min-height: 75vh;
+}
+
+/*layout of boards */
 .board-container {
     display: flex;
     flex-direction: row;
@@ -37,4 +44,147 @@ header {
 .board h2 {
     font-size: 2.5em;
     color: white;
+}
+
+/*hide main element */
+.overlay {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    margin-top: 2em;
+
+    background: rgb(21, 129, 218);
+    z-index: 1;
+}
+
+/*start menu */
+.user-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 10em;
+}
+
+.user-form label {
+    padding: 0.5em;
+
+    font-size: 1.4em;
+    text-transform: uppercase;
+    color: rgb(1, 22, 56);
+    font-weight: bold;
+}
+
+.user-form input {
+    padding: 0.8em;
+    width: 100%;
+
+    font-size: 1.1em;
+}
+
+.user-form button {
+    padding: 1em;
+    margin: 1em;
+
+    background: rgb(45, 147, 243);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+}
+
+.user-form button:hover {
+    background: rgb(7, 87, 236);
+}
+
+/*selection menu for ships */
+.selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 100%;
+    height: 100%;
+    margin-top: 1.5em;
+}
+
+.selector h2 {
+    color:rgb(1, 22, 56);
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+
+.selector button {
+    margin: 0.7em 0;
+    padding: 0.7em;
+
+    background: blue;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color:white;
+    border: none;
+}
+
+.selector button:hover {
+    background: rgb(3, 65, 180);
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+    grid-template-rows: repeat(10,1fr);
+
+    height: 50%;
+    width: 25%;
+}
+
+.grid .cell{
+    background: rgb(207, 206, 206);
+    border: 1px black solid;
+}
+
+.grid .cell.highlight {
+    background:  navy;
+}
+
+.grid .cell.first {
+    background: navy;
+}
+
+.grid .cell.second {
+    background: cornflowerblue;
+}
+
+.grid .cell.third {
+    background: rgb(60, 187, 226);
+}
+
+.grid .cell.fourth {
+    background: rgb(14, 86, 221);
+}
+
+.grid .cell.fifth {
+    background: rgb(97, 57, 231);
+}
+
+
+.grid .cell.invalid {
+    background: url(../img/cross.png) rgb(207, 206, 206) no-repeat center;
+    background-size: contain;
+}
+
+.btn-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-div button {
+    padding: 0.7em;
+    margin: 1em;
 }

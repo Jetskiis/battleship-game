@@ -1,6 +1,6 @@
-import gameBoard from "../modules/factories/Gameboard.js";
+import {createGameBoard} from "../modules/factories/gameBoard.js";
 
-let board = gameBoard();
+let board = createGameBoard();
 
 describe("Ship placement", () => {
   test("Places ship successfully", () => {
@@ -10,10 +10,10 @@ describe("Ship placement", () => {
     expect(board.place([10, 6], "y", "submarine")).toBe(true);
   });
   test("Ship is out of bounds of gameboard", () => {
-    expect(board.place([9, 2], "x", "destroyer")).toBe(false);
+    expect(board.place([10, 2], "x", "destroyer")).toBe(false);
   });
   test("Ship is out of bounds of gameboard", () => {
-    expect(board.place([1, 9], "y", "destroyer")).toBe(false);
+    expect(board.place([1, 10], "y", "destroyer")).toBe(false);
   });
   test("Ship already placed at a certain location", () => {
     expect(board.place([3, 1], "x", "destroyer")).toBe(false);
