@@ -78,4 +78,10 @@ describe("Testing hit and  missed attacks and if all ships are sunk",()=>{
     board.receiveAttack([10,6]);
     expect(board.allShipsSunk()).toBe(true);
   });
-})
+});
+
+/* describe("Getting the database of coordinates of the ship",()=>{
+  test("for return value of array of shipsDatabase",()=>{
+    console.log(board.getShipCoords());
+  })
+}) */

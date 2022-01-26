@@ -90,7 +90,7 @@ function displaySelectionMenu(){
     createGrid();
 }
 
-//generate 10x10 grid using CSS/JS
+//generate 10x10 grid using CSS/JS for selection menu
 function createGrid(){
     const parentContainer = document.querySelector(".selector");
     const adjacentNode = document.querySelector(".btn-div");

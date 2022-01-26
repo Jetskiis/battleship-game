@@ -4,8 +4,10 @@ import battleship from "./Battleship.js";
 const createGameBoard = () => {
   //board is 100 squares. goes from [1,10] both directions so shifted up by 1 from normal arrays. 2d array with [row][column]
   let board = create2D();
-  //positions of placed ships
+  //array containing battleshop objects of placed ships
   let shipsDatabase = [];
+  //array containing all coordinates of placed ships
+  let coordsDatabase = [];
   const allShips = {
     carrier: 5,
     battleship: 4,
@@ -34,6 +36,8 @@ const createGameBoard = () => {
             shipCoord.push([x + i, y]);
           }
         }
+        shipCoord.forEach((coord)=>coordsDatabase.push(coord));
+        coordsDatabase.push("|");
         shipsDatabase.push(battleship(length, shipCoord));
         return true;
       } else {
@@ -50,6 +54,8 @@ const createGameBoard = () => {
             shipCoord.push([x, y + i]);
           }
         }
+        shipCoord.forEach((coord)=>coordsDatabase.push(coord));
+        coordsDatabase.push("|");
         shipsDatabase.push(battleship(length, shipCoord));
         return true;
       } else {
@@ -103,6 +109,10 @@ const createGameBoard = () => {
     return shipsDatabase.every((ship) => ship.beenSunk());
   };
 
+  const getShipCoords = () => {
+    return coordsDatabase;
+  }
+
   return {
     allShips,
     place,
@@ -111,6 +121,7 @@ const createGameBoard = () => {
     getMissedAttacks,
     getHitAttacks,
     allShipsSunk,
+    getShipCoords
   };
 };
 
