@@ -8,8 +8,13 @@ html,body {
     min-height: 100vh;
     height: 100%;
     background: rgb(78, 78, 228);
+    font-family: battleshipFont, 'Times New Roman', Times, serif;
 }
 
+@font-face {
+    font-family: battleshipFont;
+    src: url('./Plaguard-ZVnjx.otf');
+}
 
 header {
     background: url("../img/heading.png") padding-box no-repeat center;
@@ -27,8 +32,19 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 8em;
 }
+
+.banner {
+    margin: 1em;
+    padding: 1em;
+
+    border: 3px solid black;
+
+    text-align: center;
+    font-size: 3em;
+    color: red;
+}
+
 
 .board {
     height: 35em;
@@ -185,4 +201,19 @@ main {
 .btn-div button {
     padding: 0.7em;
     margin: 1em;
+}
+
+
+/* Game icons */
+
+.grid .cell.hit {
+    background: url("../img/hit.png") rgb(27, 202, 120) no-repeat center;
+    background-size: contain;
+    border: 1px black solid;
+}
+
+.grid .cell.missed {
+    background: url("../img/null.png") rgb(202, 53, 27) no-repeat center;
+    background-size: 75%;
+    border: 1px black solid;
 }

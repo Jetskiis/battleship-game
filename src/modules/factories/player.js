@@ -38,7 +38,7 @@ const AI = () => {
         turn % 2 == 0 ? isCurrentlyPlaying = false : isCurrentlyPlaying = true
         if (isCurrentlyPlaying == true){
                 let coords = getRandomCoordinate();
-                board.receiveAttack(coords);
+                board.receiveAttack(coords); //doesnt tell us if attack was successful/not successful/redundant
                 return true
         }
         else{
@@ -48,8 +48,8 @@ const AI = () => {
 
 
     const getRandomCoordinate = () => {
-        let randomX = Math.floor(Math.random() * 11);
-        let randomY = Math.floor(Math.random() * 11);
+        let randomX = Math.floor(Math.random() * 10) + 1;
+        let randomY = Math.floor(Math.random() * 10) + 1;
         return [randomX,randomY];
     }
 

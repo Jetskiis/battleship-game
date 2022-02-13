@@ -129,7 +129,7 @@ function rotateAxis(e){
 }
 
 //clear all previous highlights
-function clearSelected(){
+export function clearSelected(){
     const previousSelected = document.querySelectorAll(".highlight, .invalid");
     previousSelected.forEach((node)=>
     {   if(!node.classList.contains("placed"))
