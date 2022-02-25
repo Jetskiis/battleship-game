@@ -12,7 +12,7 @@ module.exports = {
     filename: "app.bundle.js",
     hashFunction: "xxhash64",
     assetModuleFilename: "[name][ext]",
-    publicPath: "/To-Do-List/",
+    publicPath: "/battleship-game/",
   },
   watchOptions: {
     aggregateTimeout: 600,
