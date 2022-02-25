@@ -103,7 +103,15 @@ const createGameBoard = () => {
   const getHitAttacks = () => {
     return hitShots;
   };
-  //const typeShipsSunk = () => {};
+  const numSunk = () => {
+    let num = 0;
+    shipsDatabase.forEach((ship) => {
+      if(ship.beenSunk())
+        num++;
+    });
+
+    return num;
+  };
   
   const allShipsSunk = () => {
     return shipsDatabase.every((ship) => ship.beenSunk());
@@ -120,6 +128,7 @@ const createGameBoard = () => {
     receiveAttack,
     getMissedAttacks,
     getHitAttacks,
+    numSunk,
     allShipsSunk,
     getShipCoords
   };

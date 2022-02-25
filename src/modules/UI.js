@@ -39,7 +39,7 @@ function removeStartMenu(e){
 
     if(name.length == 0 || !name.match(/^[a-z0-9]+$/i)){
         alert("Invalid name, try again only alphanumeric characters and without spaces");
-
+        document.querySelector(".user-form").reset();
     }
     else {
         startMenu.remove();

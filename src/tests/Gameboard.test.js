@@ -73,9 +73,14 @@ describe("Testing hit and  missed attacks and if all ships are sunk",()=>{
   test("All ships should not be sunk yet",()=>{
     expect(board.allShipsSunk()).toBe(false);
   });
+  test("Number of ships sunk",()=>{
+    expect(board.numSunk()).toBe(0);
+  })
   test("All ships should be sunk",()=>{
     board.receiveAttack([2,1]);
+    expect(board.numSunk()).toBe(1);
     board.receiveAttack([10,6]);
+    expect(board.numSunk()).toBe(2);
     expect(board.allShipsSunk()).toBe(true);
   });
 });

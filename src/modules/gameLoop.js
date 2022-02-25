@@ -53,7 +53,8 @@ function createGrid(player, board) {
       cell.setAttribute("id", `${x}-${11 - y}`);
       cell.style.height = "100%";
       cell.style.width = "100%";
-      cell.addEventListener("click", fireShot);
+      if(player == "AI")
+        cell.addEventListener("click", fireShot);
 
       if (player == "AI") {
         cell.addEventListener("mouseover", (e) => {
@@ -199,6 +200,7 @@ function coordinatesToBoard(coords, board) {
 
 //atempts to fire shot on the clicked cell
 function fireShot(e) {
+  const banner = document.querySelector(".banner");
   const numHit = AIBoardObj.getHitAttacks().length;
   const numMissed = AIBoardObj.getMissedAttacks().length;
   const target = e.target;
@@ -214,23 +216,28 @@ function fireShot(e) {
       target.classList.add("missed");
     } else {
       //attack invalid (cell already hit)
-      alert("Already attacked, try again");
+      alert("Invalid attack, try again");
       return;
     }
 
     if (AIBoardObj.allShipsSunk()) {
-      endGame("player win"); //winner found
-      alert(`Game over, ${humanPlr.getName()} wins`);
+      endGame("Player wins"); //winner found
       return;
     }
 
     turn+=1;
-    AIFireShot();
+    banner.textContent = "AI's turn";
+    setTimeout(AIFireShot,2000);
+    setTimeout(()=>{
+      banner.textContent = "AI fires a shot";
+    },1400);
+
   }
 }
 
 //AI automatically fires a valid shot onto player grid
 function AIFireShot() {
+  const banner = document.querySelector(".banner");
   const AIHitCount = humanBoardObj.getHitAttacks().length;
   const AIMissCount = humanBoardObj.getMissedAttacks().length;
 
@@ -257,12 +264,27 @@ function AIFireShot() {
   turn+=1;
 
   if (humanBoardObj.allShipsSunk()) {
-    endGame("AI win"); //winner found
-    alert("Game over, AI wins");
+    endGame("AI wins"); //winner found
     return;
   }
+  
+  banner.textContent = "Your turn!";
+
 }
 
-function endGame() {}
+function endGame(msg) {
+  const banner = document.querySelector(".banner");
+  const cells = document.querySelectorAll(".cell");
+
+  cells.forEach((cell)=>cell.removeEventListener("click",fireShot));
+
+  if(msg == "Player wins"){
+    banner.textContent = `Game over, ${humanPlr.getName()} wins`;
+    banner.style["font-size"] = "2.2em";
+  }
+  else {
+    banner.textContent = "Game over, AI wins";
+  }
+}
 
 export { runGameLoop, initializePlayers, startGame };
